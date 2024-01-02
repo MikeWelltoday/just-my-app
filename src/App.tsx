@@ -6,9 +6,9 @@ import './App.css'
 function App() {
 
     return (
-        <main>
+        <div className={'App'}>
             123
-        </main>
+        </div>
     )
 }
 
