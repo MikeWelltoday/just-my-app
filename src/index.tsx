@@ -6,19 +6,6 @@ import reportWebVitals from './reportWebVitals'
 
 //===============================================================================================================================================================
 
-import {splitIntoWords, value01_01} from './01-hello-tests/01'
-
-let a = value01_01
-
-const sentence = 'Hello my dear friend!'
-
-
-const result = splitIntoWords(sentence)
-console.log(result)
-
-
-//===============================================================================================================================================================
-
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 )
