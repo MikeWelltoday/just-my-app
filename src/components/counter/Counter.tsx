@@ -3,7 +3,6 @@ import S from './Counter.module.scss'
 import {Button} from '../button/Button'
 import {numType} from '../../App'
 
-
 //======================================================================================================
 
 type CounterPropsType = {
