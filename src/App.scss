@@ -1,26 +1,13 @@
-
 .App {
-  padding: 30px;
+  background-color: #2a2c35;
+  height: 100vh;
+  width: 100%;
+
   display: flex;
-}
+  flex-direction: column;
+  column-gap: 50px;
+  align-items: center;
+  justify-content: center;
 
-.App > div {
-  margin-right: 50px;
+  font-size: 30px;
 }
-
-.error {
-  border: red 1px solid;
-}
-
-.error-message {
-  color: red;
-}
-
-.active-filter {
-  background-color: aquamarine;
-}
-
-.is-done {
-  opacity: 0.5;
-}
-
