@@ -1,122 +1,51 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './App.css'
-import {TaskType, Todolist} from './Todolist'
-import {v1} from 'uuid'
-
-//===========================================================================================<
-
-type ObjectType = {
-    title: string
-    filter: FilterValuesType
-    tasks: Array<TasksType>
-    students: Array<string>
-}
-export type TasksType = {
-    taskId: string
-    title: string
-    isDone: boolean
-}
-
-export type FilterValuesType = 'all' | 'active' | 'completed';
-
-type TodoFromServerType = {
-    title: string
-    filter: FilterValuesType
-    tasks: TaskType[]
-    students: string[]
-}
-
-type TodolistIdType = { todolistId: string }
-
-//===========================================================================================<
-
+import {Link, NavLink, Outlet, useNavigate} from 'react-router-dom'
+import styles from './components/Site.module.css'
+import {S} from './components/pages/__styles'
+import {useWindowSize} from './hooks_OR_helpers/useWindowSize'
 
 function App() {
 
-    const todoFromServer: TodoFromServerType[] = [
-        {
-            title: 'What to learn',
-            filter: 'all',
-            tasks: [
-                {taskId: v1(), title: 'HTML&CSS', isDone: true},
-                {taskId: v1(), title: 'JS', isDone: true}
-            ],
-            students:
-                [
-                    'Rick Kane',
-                    'Finnlay Bentley'
-                ]
-        },
-        {
-            title: 'What to do',
-            filter: 'all',
-            tasks: [
-                {taskId: v1(), title: 'HTML&CSS2', isDone: true},
-                {taskId: v1(), title: 'JS2', isDone: true}
-            ],
-            students:
-                [
-                    'Jago Wormald1',
-                    'Saul Milne2'
-                ]
-        }
-    ]
 
-    const [todos, setTodos] = useState<(TodoFromServerType & TodolistIdType)[]>(
-        () => todoFromServer.map(t => ({...t, todolistId: v1()}))
-    )
+    // BACK BUTTON
+    const navigate = useNavigate()
 
-    function removeTask(taskId: string, todolistId: string) {
-        setTodos(todos.map(t => t.todolistId === todolistId ? {
-            ...t,
-            tasks: t.tasks.filter(item => item.taskId !== taskId)
-        } : t))
+    function onClickHandler() {
+        navigate(-1)
     }
 
-    function addTask(title: string, todolistId: string) {
-        setTodos(todos.map(t => t.todolistId === todolistId ? {
-            ...t,
-            tasks: [{taskId: v1(), title, isDone: false}, ...t.tasks]
-        } : t))
-    }
-
-    function changeStatus(id: string, isDone: boolean, todolistId: string) {
-        setTodos(todos.map(t => t.todolistId === todolistId ? {
-            ...t,
-            tasks: t.tasks.map(item => item.taskId === id ? {...item, isDone} : item)
-        } : t))
-    }
-
-    function changeFilter(filter: FilterValuesType, todolistId: string) {
-        setTodos(todos.map(t => t.todolistId === todolistId ? {...t, filter} : t))
-    }
-
-    function removeTodolist(todolistId: string) {
-        setTodos(todos.filter(t => t.todolistId !== todolistId))
-    }
+    // MENU BURGER
+    const windowSize = useWindowSize()
 
     return (
-        <div className="App">
+        <div>
+            <div>
+                <div className={styles.header}><h1>HEADER</h1></div>
+                <div className={styles.body}>
+                    {!(windowSize < 1000) ?
+                        <div className={styles.nav}>
+                            <S.NavWrapper><NavLink to={'/page/0'}>Page1</NavLink></S.NavWrapper>
+                            <S.NavWrapper><NavLink to={'/page/1'}>Page2</NavLink></S.NavWrapper>
+                            <S.NavWrapper><NavLink to={'/page/2'}>Page3</NavLink></S.NavWrapper>
+                            <div><a href="/page1">aHrefPage1</a></div>
+                        </div>
+                        :
+                        <div>NO</div>}
 
-            {todos.map(tl => {
+                    <div className={styles.content}>
+                        {/* ДИНАМИЧНАЯ ЧАСТЬ */}
+                        <Outlet/>
+                    </div>
+                </div>
 
-                let tasks = tl.tasks
-                if (tl.filter === 'active') tasks = tasks.filter(t => !t.isDone)
-                if (tl.filter === 'completed') tasks = tasks.filter(t => t.isDone)
+                {/* кнопка возварата */}
+                <Link className={styles.buttonLink} to={'/page/0'}>ГЛАВНАЯ СТРАНИЦА</Link>
 
-                return <Todolist
-                    key={tl.todolistId}
-                    id={tl.todolistId}
-                    title={tl.title}
-                    tasks={tasks}
-                    filter={tl.filter}
-                    removeTask={removeTask}
-                    changeFilter={changeFilter}
-                    addTask={addTask}
-                    changeTaskStatus={changeStatus}
-                    removeTodolist={removeTodolist}/>
-            })}
+                {/*  BACK  */}
+                <button className={styles.buttonLink} onClick={onClickHandler}>НАЗАД</button>
 
+            </div>
         </div>
     )
 }
