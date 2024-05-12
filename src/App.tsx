@@ -1,14 +1,17 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styles from './components/Site.module.css'
 import {Adidas} from './components/pages/Adidas'
 import {Puma} from './components/pages/Puma'
 import {Abibas} from './components/pages/Abibas'
 import {Navigate, NavLink, Route, Routes} from 'react-router-dom'
 import {Error404} from './components/pages/Error404'
-import styled from 'styled-components'
 import {S} from './components/pages/_styles'
 import {Model} from './components/pages/Model'
 import {Prices} from './components/pages/Prices'
+
+const foo = () => {
+    console.log('foo')
+}
 
 
 const PATH = {
