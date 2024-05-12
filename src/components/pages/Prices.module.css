@@ -1,0 +1,24 @@
+.tableStyle {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.thStyle {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.tdStyle {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.buttonStyle {
+    margin: 0 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
