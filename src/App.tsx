@@ -8,7 +8,7 @@ import {Error404} from './components/pages/Error404'
 import {S} from './components/pages/_styles'
 import {Model} from './components/pages/Model'
 import {Prices} from './components/pages/Prices'
-import {Form} from 'react-hook-form'
+import {Form} from './form-practise/Form'
 
 const foo = () => {
     console.log('foo')

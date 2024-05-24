@@ -1,0 +1,46 @@
+.form {
+  max-width: 400px; // Set a max-width for the form
+  margin: 2rem auto; // Center the form on the page
+  padding: 1rem;
+  background: #f9f9f9; // Light grey background
+  border: 1px solid #e1e1e1; // Light grey border
+  border-radius: 8px; // Rounded corners
+
+  label {
+    display: block; // Ensure the label takes up the full width
+    margin-bottom: 0.5rem; // Space below the label
+    color: #333; // Dark grey color for text
+    font-size: 1rem; // Font size for the label
+  }
+
+  input[type='text'],
+  input[type='email'] {
+    width: 100%; // Full width inputs
+    padding: 0.5rem; // Padding inside the inputs
+    margin-bottom: 1rem; // Space below the inputs
+    border: 1px solid #ccc; // Light grey border
+    border-radius: 4px; // Slightly rounded corners
+
+    &:focus {
+      border-color: #007bff; // Blue border on focus
+      outline: none; // Remove the default focus outline
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); // Glow effect on focus
+    }
+  }
+
+  input[type='submit'] {
+    width: 100%; // Full width button
+    padding: 0.6rem; // Padding inside the button
+    margin-top: 0.5rem; // Space above the button
+    background-color: #007bff; // Blue background color
+    color: #fff; // White text color
+    border: none; // No border
+    border-radius: 4px; // Slightly rounded corners
+    cursor: pointer; // Pointer cursor on hover
+    transition: background-color 0.2s; // Smooth background color transition
+
+    &:hover {
+      background-color: #0056b3; // Darker blue on hover
+    }
+  }
+}
